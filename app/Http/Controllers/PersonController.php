@@ -11,6 +11,16 @@ use App\Person;
 class PersonController extends Controller
 {
     /**
+     * List all persons
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return response()
+            ->json(Person::all());
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

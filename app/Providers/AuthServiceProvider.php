@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Container\Container;
+use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,8 +25,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Auth::extend('constantToken', function(Container $app, $name, $config) {
+            return new \App\Auth\ConstantTokenGuard($app['request'], $config['token']);
+        });
         $this->registerPolicies();
-
-        //
     }
 }

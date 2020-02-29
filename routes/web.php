@@ -13,10 +13,16 @@
 
 Route::resource('movies', 'MovieController')->only([
     'show', 'index'
-]);
+])->middleware('auth:api');
+
 Route::resource('persons', 'PersonController')->only([
-    'store'
-]);
+    'index', 'store'
+])->middleware('auth:api');
+
 Route::resource('movies.actors', 'MovieActorController')->only([
     'update'
-]);
+])->middleware('auth:api');
+
+Route::get('/', function() {
+    return view('index');
+});
