@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('movies', 'MovieController')->only([
+    'show', 'index'
+]);
+Route::resource('persons', 'PersonController')->only([
+    'store'
+]);
+Route::resource('movies.actors', 'MovieActorController')->only([
+    'update'
+]);
